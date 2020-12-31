@@ -1,7 +1,7 @@
 const express = require ("express") ;
  const session = require("express-session") ; 
- const {User ,passportlocal , passport , userschema  , passportlocalmongoose}= require("./db/db")
-const{order}= require("./db/db2") ; 
+ const {User , order , passportlocal , passport , userschema  , passportlocalmongoose}= require("./db/db")
+
 const app = express() ; 
 
 app.use(express.urlencoded({extended:true})) ; 
@@ -84,17 +84,20 @@ app.listen(5759 , ()=>{
     console.log("server started on http://localhost:5759") ;
 })
 app.post("/placeorder" , (req, res)=>{
+
+    console.log(req.body) ; 
     const order1= new order({
-       delivery:req.body.delivery , 
+       
+       type:req.body.type , 
        way:req.body.way , 
        weight:req.body.weight , 
        pickupinfo:{
          pickup:req.body.pickup , 
-         pickupnumber:req.body.number , 
+         pickupnumber:req.body.pickupnumber , 
          pickuppin:req.body.pickuppin   
        } ,
 
-       deliveryinfo:{
+       destinationinfo:{
            delivery:req.body.delivery , 
            deliverpin:req.body.deliverypin , 
            deliverynumber:req.body.deliverynumber
@@ -102,6 +105,7 @@ app.post("/placeorder" , (req, res)=>{
        payment:req.body.payment 
     })
     order1.save() ; 
+    res.send("successfully ordered")  ; 
     
 })
 

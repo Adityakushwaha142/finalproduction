@@ -19,6 +19,36 @@ const first = new User({
     email:"kushwahaaditya251@gmail.com" , 
     password :"12345678" 
 })
+
+const orderschema = new mongoose.Schema ({
+      
+    type:String , 
+    way:String , 
+    weight:String ,
+    pickupinfo:[{
+        pickuppin:Number , 
+        pickupnumber:Number , 
+        pickup:String , 
+        
+
+    }]  ,
+    destinationinfo:[
+        {
+            deliverpin:Number , 
+            deliverynumber:Number ,
+          deliver:String , 
+      
+
+        }
+    ]   , 
+    paymenttype:String
+    
+})
+const order= mongoose.model("order" , orderschema) ; 
+
 module.exports={
-    User  , passport , passportlocal , passportlocalmongoose , userschema
+    User  , order ,  passport , passportlocal , passportlocalmongoose , userschema
 }
+
+ 
+
