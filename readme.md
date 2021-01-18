@@ -1,0 +1,1 @@
+The Measurment of carosuel photos is 1600*715

@@ -61,7 +61,7 @@ app.post("/signup", (req, res) => {
         res.render("signup");
       } else {
         passport.authenticate("local")(req, res, function () {
-          res.render("profile");
+          res.render("login");
         });
       }
     }
@@ -80,7 +80,7 @@ app.post("/login", (req, res) => {
       res.render("login");
     } else {
       passport.authenticate("local")(req, res, function () {
-        res.redirect("/profile");
+        res.render("index.hbs");
       });
     }
   });
